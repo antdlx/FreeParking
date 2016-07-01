@@ -23,7 +23,8 @@ if($method=='POST' && (!empty($manager_id)) && (!empty($manager_img)) && (!empty
     try{
 
         $sql = "SELECT manager_id FROM manager WHERE manager_id = '$manager_id'";
-        $stmt = $pdo -> query($sql);
+        $stmt = $pdo -> prepare($sql);
+        $stmt->execute();
         $num = $stmt->rowCount();
 
         if($num == 0){

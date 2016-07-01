@@ -24,7 +24,8 @@ if($method=='POST' && (!empty($manager_id)) && (!empty($manager_img)) && (!empty
         $pdo->beginTransaction();
 
         $sql = "UPDATE manager SET manager_img = '$manager_img', manager_name = '$manager_name' WHERE manager_id = '$manager_id'";
-        $stmt = $pdo->exec($sql);
+        $stmt = $pdo->prepare($sql);
+        $stmt ->execute();
 
         if($stmt==1){
             echo 0;

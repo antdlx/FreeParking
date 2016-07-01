@@ -22,7 +22,8 @@ class Count{
         $current_date = date('Y-m-d',time());
 
         $sql = "SELECT count(ticket_id) FROM ticket WHERE ticket_state=4 AND day(ticket_usetime) = day('$current_date')";
-        $stmt = $pdo -> query($sql);
+        $stmt = $pdo->prepare($sql);
+        $stmt ->execute();
         $list = $stmt ->fetchAll(PDO::FETCH_ASSOC);
 
         return $list[0]['count(ticket_id)'];

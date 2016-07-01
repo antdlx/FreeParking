@@ -23,12 +23,14 @@ if($method=='POST' && (!empty($manager_id)) && (!empty($manager_oldpassword)) &&
         $pdo -> beginTransaction();
 
         $sql = "SELECT manager_id FROM manager WHERE manager_id = '$manager_id' AND manager_password = '$manager_oldpassword'";
-        $stmt = $pdo -> query($sql);
+        $stmt = $pdo -> prepare($sql);
+        $stmt ->execute();
         $num = $stmt -> rowCount();
 
         if($num == 1){
             $sql = "UPDATE manager SET manager_password = '$manager_newpassword' WHERE manager_id = '$manager_id'";
-            $stmt = $pdo->exec($sql);
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
 
             echo 0;
             $pdo -> commit();

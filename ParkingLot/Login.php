@@ -19,7 +19,8 @@ $manager_pwd = $_POST['manager_password'];
 if($method=='POST' && (!empty($manager_id)) && (!empty($manager_pwd))){
 
     $sql = "SELECT  manager_id FROM manager WHERE manager_id = '$manager_id' AND manager_password = '$manager_pwd'";
-    $stmt = $pdo->query($sql);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
     $num = $stmt -> rowCount();
 
     if($num == 0 ){

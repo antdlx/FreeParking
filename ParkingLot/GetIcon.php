@@ -18,7 +18,8 @@ $manager_id = $_POST['manager_id'];
 if($method=="POST" && (!empty($manager_id))){
 
     $sql = "SELECT manager_img FROM manager WHERE manager_id = '$manager_id'";
-    $stmt = $pdo->query($sql);
+    $stmt = $pdo->prepare($sql);
+    $stmt ->execute();
     $list = $stmt ->fetchAll(PDO::FETCH_ASSOC);
 
     $num = $stmt -> rowCount();

@@ -9,16 +9,17 @@ require_once "Auth.php";
 require_once "../ParkingLot/Functions.php";
 
 use Qiniu\Auth;
+$method = $_SERVER['REQUEST_METHOD'];
 
-$bucket = "freeparking";
-$accessKey = "BH5izUYX7Ozzjm5_Y7MQfz_BDa9H4C36Uv1h2a4N";
-$secretKey = "p0-jtBog5sOW0oaM4GF_1nEkQwRK13kPzIcxsEdp";
+if($method == 'POST'){
+    $bucket = "freeparking";
+    $accessKey = "BH5izUYX7Ozzjm5_Y7MQfz_BDa9H4C36Uv1h2a4N";
+    $secretKey = "p0-jtBog5sOW0oaM4GF_1nEkQwRK13kPzIcxsEdp";
 
-$auth = new Auth($accessKey, $secretKey);
-$upToken = $auth->uploadToken($bucket);
+    $auth = new Auth($accessKey, $secretKey);
+    $upToken = $auth->uploadToken($bucket);
 
-$res = array('uptoken' => $upToken);
+    $res = array('uptoken' => $upToken);
 
-echo json1($res);
-
-?>
+    echo json1($res);
+}
