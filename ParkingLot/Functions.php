@@ -5,14 +5,14 @@
  * Date: 2016/6/30
  * Time: 15:00
  */
-function connectSaeDb(){
+function connectDb(){
     try{
-        $conn = "mysql:host=139.129.24.127:22;dbname=db_parking";
-        $pdo = new PDO($conn,"congjiujiu","123456");
+        $conn = "mysql:host=localhost;dbname=db_parking";
+        $pdo = new PDO($conn,"root","");
         //异常处理：显示exception
         $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     }catch (PDOException $e){
-        die('can not connect to sae db :'.$e->getMessage());
+        die('can not connect to the db :'.$e->getMessage());
     }
     return $pdo;
 }
