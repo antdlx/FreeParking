@@ -17,3 +17,4 @@ function test_input($input)
     $input = htmlspecialchars($input);
     return $input;
 }
+
