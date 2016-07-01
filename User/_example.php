@@ -6,8 +6,9 @@
  * Time: 12:45
  */
 
+require_once("common.php");
 
-$pdo = new PDO('mysql:host=127.0.0.1;dbname=db_parking;charset=utf8', 'congjiujiu', '123456');
+$pdo = connectDB();
 $stmt = $pdo->prepare("select * from ticket_state");
 $stmt->execute();
 $count = $stmt->rowCount();
