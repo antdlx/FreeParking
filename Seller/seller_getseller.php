@@ -13,12 +13,18 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $stmt = $pdo->prepare("select * from seller where seller_id = ?");
     $stmt->bindParam(1,$seller_id );
     $stmt->execute();
+    $rowcount = $stmt->rowCount();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $obj;
-    $obj["seller_name"] = $row["seller_name"];
-    $obj["seller_img"] = $row["seller_img"];
-    $obj["seller_contact"] = $row["seller_contact"];
-    $obj["seller_address"] = $row["seller_address"];
-    echo json_encode($obj);
+    if($rowcount==0)
+        $obj["state"] = 1;
+    else{
+        $obj["state"] = 0;
+        $obj["seller_name"] = $row["seller_name"];
+        $obj["seller_img"] = $row["seller_img"];
+        $obj["seller_contact"] = $row["seller_contact"];
+        $obj["seller_address"] = $row["seller_address"];
+        echo json_encode($obj);
+    }
     return;
 }
