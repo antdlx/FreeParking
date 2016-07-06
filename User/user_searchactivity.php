@@ -21,7 +21,7 @@ $number_limit = $_POST['number_limit'];
 
 
 
-$sql = "select count(*) as number from activity join seller using (seller_id) where seller_name like '%".$search_word."%'";
+$sql = "select count(*) as number from seller where seller_name like '%".$search_word."%' order by seller_id";
 
 $stmt = $pdo->prepare($sql);
 
@@ -36,13 +36,8 @@ print($count);
 if($number_limit > $count){
     echo -1;//没有数据
 }
-else if($number_limit + 10 > $count){
-    $stmt = $pdo->prepare("select * from activity join seller using(seller_id) where seller_name like '%$search_word%' and activity_id between '$number_limit' and '$count'");
-
-}
 else{
-    $stmt = $pdo->prepare("select * from activity join seller using (seller_id) where seller_name like '%$search_word%'
-    and activity_id between '$number_limit' and ('$number_limit'+10)");
+    $stmt = $pdo->prepare("select * from seller where seller_name like '%$search_word%' order by seller_id limit $number_limit,10");
 }
 
 $stmt->execute();
@@ -63,9 +58,9 @@ if($count > 0 ){
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             $a['seller_id'] = urlencode($row['seller_id']);
         $a['seller_name'] = urlencode($row['seller_name']);
-        $a['activity_name'] = urlencode($row['activity_name']);
-        $a['activity_address'] = urlencode($row['activity_address']);
-        $a['activity_contact'] = urlencode($row['activity_contact']);
+        $a['seller_address'] = urlencode($row['seller_address']);
+        $a['seller_contact'] = urlencode($row['seller_contact']);
+        $a['seller_img'] = urlencode($row['seller_img']);
         $as[$i] = $a;
         $i++;
     }
