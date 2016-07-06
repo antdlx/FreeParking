@@ -33,6 +33,7 @@ if($count > 0 ){
         $activity['activity_starttime'] = urlencode($row['activity_starttime']);
         $activity['activity_endtime'] = urlencode($row['activity_endtime']);
         $activity['activity_detail'] = urlencode($row['activity_detail']);
+        $activity['activity_img'] = urlencode($row['activity_img']);
         $activities[$i] = $activity;
         $i++;
     }
