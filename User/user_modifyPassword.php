@@ -19,7 +19,7 @@ function test_input($data){
 }
 
 try {
-    $pdo = new PDO('mysql:host=127.0.0.1;dbname=freeparking;charset=utf8', 'root', '123321');
+    $pdo = new PDO('mysql:host=127.0.0.1;dbname=db_parking;charset=utf8', 'congjiujiu', '123456');
 
     $user_id = test_input($_POST['user_id']);
     $user_oldpassword = test_input($_POST['user_oldpassword']);

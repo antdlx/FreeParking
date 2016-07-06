@@ -25,7 +25,7 @@ $user = 'root';
 $passwd = '123321';
 $dsn = $dbms.':host='.$host.';dbName='.$dbName.';charset=UTF8';
 try{
-    $pdo = new PDO('mysql:host=127.0.0.1;dbname=freeparking;charset=utf8', 'root', '123321');
+    $pdo = new PDO('mysql:host=127.0.0.1;dbname=db_parking;charset=utf8', 'congjiujiu', '123456');
 
 
     $user_id = $_POST['user_id'];

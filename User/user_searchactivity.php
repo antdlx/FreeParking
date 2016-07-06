@@ -7,7 +7,7 @@
  */
 
 
-$pdo = new PDO('mysql:host=127.0.0.1;dbname=freeparking;charset=utf8', 'root', '123321');
+$pdo = new PDO('mysql:host=127.0.0.1;dbname=db_parking;charset=utf8', 'congjiujiu', '123456');
 
 function test_input($data){
     $data = trim($data);

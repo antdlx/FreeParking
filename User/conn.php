@@ -8,9 +8,9 @@
 header("Content-type:text/html; charset=utf-8");
 
 $dbHost ="127.0.0.1";
-$dbUser ="root";
-$dbPassword = "123321";
-$database = "freeparking";
+$dbUser ="congjiujiu";
+$dbPassword = "123456";
+$database = "db_parking";
 
 $con = new mysqli($dbHost, $dbUser, $dbPassword, $database);
 
