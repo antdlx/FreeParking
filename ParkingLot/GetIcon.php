@@ -27,7 +27,7 @@ if($method=="POST" && (!empty($manager_id))){
     if($num==0){
         echo 1;
     }else{
-        echo json1($list);
+        echo json1($list[0]);
     }
 
 
