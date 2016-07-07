@@ -30,14 +30,7 @@ $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 $count = $row['number'];
 
-
-
-if($number_limit > $count){
-    echo -1;//没有数据
-}
-else{
-    $stmt = $pdo->prepare("select * from seller where seller_name like '%$search_word%' order by seller_id limit $number_limit,10");
-}
+$stmt = $pdo->prepare("select * from seller where seller_name like '%$search_word%' order by seller_id limit $number_limit,10");
 
 $stmt->execute();
 $count = $stmt->rowCount();
