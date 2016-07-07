@@ -40,8 +40,6 @@ try{
 
     $count = $stmt->rowCount();
 
-    print($count);
-
 
     $i = 0;
     if($count > 0){
