@@ -25,6 +25,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else if ($seller_password == $row["seller_password"]) {
         //密码验证成功
         $obj['state'] = 0;
+
+        $stmt = $pdo->prepare("select * from seller where seller_id = ?");
+        $stmt->bindParam(1, $seller_id);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $obj["state"] = 0;
+        $obj["seller_name"] = $row["seller_name"];
+        $obj["seller_img"] = $row["seller_img"];
+        $obj["seller_contact"] = $row["seller_contact"];
+        $obj["seller_address"] = $row["seller_address"];
     } else {
         //密码错误
         $obj['state'] = 1;
