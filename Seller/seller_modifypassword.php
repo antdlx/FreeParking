@@ -5,6 +5,9 @@
  * Date: 2016/7/1
  * Time: 9:09
  */
+
+require_once("common.php");
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $obj;
     $seller_id = test_input($_POST["seller_id"]);
