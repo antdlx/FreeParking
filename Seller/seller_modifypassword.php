@@ -26,10 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($rowCount == 1 && $seller_oldpassword == $password) {
         $obj["state"] = 0;
 
-        $stmt = $pdo->prepare("update seller set seller_password where seller_id = ?");
-        $stmt->bindParam(1, $seller_id);
+        $stmt = $pdo->prepare("update seller set seller_password=? where seller_id = ?");
+        $stmt->bindParam(1, $seller_newpassword);
+        $stmt->bindParam(2, $seller_id);
         $stmt->execute();
-    } else {
+    }
+    else {
         $obj["state"] = 1;
     }
     echo json_encode($obj);
