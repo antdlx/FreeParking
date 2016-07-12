@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $ticket;
             $ticket['ticket_id'] = $row['ticket_id'];
             $ticket['user_name'] = $row['user_name'];
+            $ticket['ticket_usetime'] = $row['ticket_usetime'];
             $ticket['ticket_deadLine'] = $row['ticket_deadLine'];
             $ticket['ticket_state'] = $row['ticket_state'];
             $array[$i] = $ticket;
