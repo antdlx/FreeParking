@@ -10,7 +10,7 @@ $pdo = new PDO('mysql:host=127.0.0.1;dbname=db_parking;charset=utf8', 'congjiuji
 
 function test_input($data){
     $data = trim($data);
-    $data = stripcslashes($data);//去除反斜杠
+    $data = stipcslashes($data);//去除反斜杠
     $data = htmlspecialchars($data);//去除< > ? 之类的html所含的特殊字符
     return $data;
 }
