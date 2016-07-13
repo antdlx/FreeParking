@@ -25,14 +25,16 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 $state = $row['ticket_state'];
 
 if($state == 1){
+
     $a = array(
         'state'=>0
     );
 
     $stmt = $pdo->prepare("update ticket set ticket_state = 2,user_id = ?");
     $stmt->bindParam(1,$user_id);
-    $stmt->execute();
+    $result = $stmt->execute();
 
+    if($result)
     echo json_encode($a);
 }
 else if($state == 2){
@@ -41,7 +43,5 @@ else if($state == 2){
     );
     echo json_encode($a);
 }
-
-
 
 ?>
