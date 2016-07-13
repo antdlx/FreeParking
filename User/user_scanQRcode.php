@@ -10,7 +10,7 @@ $pdo = new PDO('mysql:host=127.0.0.1;dbname=db_parking;charset=utf8', 'congjiuji
 
 function test_input($data){
     $data = trim($data);
-    $data = stripcslashes($data);//去除反斜杠
+    $data = stipcslashes($data);//去除反斜杠
     $data = htmlspecialchars($data);//去除< > ? 之类的html所含的特殊字符
     return $data;
 }
@@ -25,14 +25,16 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 $state = $row['ticket_state'];
 
 if($state == 1){
+
     $a = array(
         'state'=>0
     );
 
     $stmt = $pdo->prepare("update ticket set ticket_state = 2,user_id = ?");
     $stmt->bindParam(1,$user_id);
-    $stmt->execute();
+    $result = $stmt->execute();
 
+    if($result)
     echo json_encode($a);
 }
 else if($state == 2){
@@ -41,7 +43,5 @@ else if($state == 2){
     );
     echo json_encode($a);
 }
-
-
 
 ?>

@@ -35,11 +35,11 @@ try{
         exit();
     }
 
-    $stmt = $pdo->prepare("select * from ticket natural join activity natural join seller where user_id = 'pants';");
+    $stmt = $pdo->prepare("select * from ticket natural join activity natural join seller where user_id = '".$user_id."'
+     where ticket_state <> 3 and ticket_state <> 4 order by ticket_deadLine asc;");
     $stmt->execute();
 
     $count = $stmt->rowCount();
-
 
     $i = 0;
     if($count > 0){
