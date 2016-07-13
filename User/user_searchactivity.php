@@ -30,20 +30,11 @@ $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 $count = $row['number'];
 
-print($count);
-
-
-if($number_limit > $count){
-    echo -1;//没有数据
-}
-else{
-    $stmt = $pdo->prepare("select * from seller where seller_name like '%$search_word%' order by seller_id limit $number_limit,10");
-}
+$stmt = $pdo->prepare("select * from seller where seller_name like '%$search_word%' order by seller_id limit $number_limit,10");
 
 $stmt->execute();
 $count = $stmt->rowCount();
 
-print($count);
 
 
 $i = 0;
@@ -56,7 +47,7 @@ if($count > 0 ){
     else
         $b = $count;
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-            $a['seller_id'] = urlencode($row['seller_id']);
+        $a['seller_id'] = urlencode($row['seller_id']);
         $a['seller_name'] = urlencode($row['seller_name']);
         $a['seller_address'] = urlencode($row['seller_address']);
         $a['seller_contact'] = urlencode($row['seller_contact']);
@@ -64,7 +55,6 @@ if($count > 0 ){
         $as[$i] = $a;
         $i++;
     }
-    echo urldecode(json_encode($b));
     echo urldecode(json_encode($as));
 }
 else{

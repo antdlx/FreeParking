@@ -20,7 +20,6 @@ function test_input($data){
 
 $user_id = $_POST['user_id'];
 
-print($user_id);
 
 $con->query("set names utf8");
 
