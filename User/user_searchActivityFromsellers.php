@@ -17,7 +17,7 @@ function test_input($data){
 
 $seller_id = test_input($_POST['seller_id']);
 
-$stmt = $pdo->prepare("select * from activity where seller_id = '$seller_id';");
+$stmt = $pdo->prepare("select * from activity where seller_id = '$seller_id' order by activity_starttime desc;");
 
 $stmt->execute();
 
