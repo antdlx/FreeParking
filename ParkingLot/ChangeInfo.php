@@ -18,7 +18,7 @@ $manager_name = $_POST['manager_name'];
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-if($method=='POST' && (!empty($manager_id)) && (!empty($manager_img)) && (!empty($manager_name))){
+if($method=='POST' &&   (!empty($manager_id)) && (!empty($manager_img)) && (!empty($manager_name))){
 
     try{
         $pdo->beginTransaction();

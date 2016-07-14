@@ -1,7 +1,6 @@
 <?php
 /**
  * Created by PhpStorm.
- *获取提高车场所有商家的信息
  * User: antdlx
  * Date: 2016/7/14
  * Time: 16:06
