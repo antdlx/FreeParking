@@ -14,11 +14,10 @@ $pdo = connectDb();
 
 $method = $_SERVER['REQUEST_METHOD'];
 $ticket_id = $_POST['ticket_id'];
-$manager_id = $_POST['manager_id'];
 
 date_default_timezone_set('Asia/Shanghai');
 
-if($method == "POST"  && (!empty($ticket_id)) && (!empty($manager_id))){
+if($method == "POST"  && (!empty($ticket_id))){
 
     try{
         $sql = "SELECT ticket_state FROM ticket WHERE ticket_id = '$ticket_id'";
@@ -49,20 +48,10 @@ if($method == "POST"  && (!empty($ticket_id)) && (!empty($manager_id))){
                         echo 1;
                         break;
                     case 2:
-                        //检查是否属于这个停车场
-                        $sql = "SELECT count(ticket_id) FROM ticket NATURAL JOIN activity NATURAL JOIN seller_parklot NATURAL JOIN manager WHERE ticket_id = '$ticket_id' AND manager_id = '$manager_id'";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt ->execute();
-                        $list = $stmt ->fetchAll(PDO::FETCH_ASSOC);
-                        if($list[0]['count(ticket_id)']==0){
-                            echo 5;
-                            return;
-                        }
-
                         $sql = "UPDATE ticket SET ticket_usetime = '$time',ticket_state=4 WHERE ticket_id = '$ticket_id'";
                         $stmt = $pdo->prepare($sql);
                         $stmt->execute();
-                        if($stmt->rowCount()==1){
+                        if($stmt==1){
                             //验证成功
                             echo 0;
                             $pdo->commit();
@@ -77,7 +66,7 @@ if($method == "POST"  && (!empty($ticket_id)) && (!empty($manager_id))){
                         break;
                     default:
                         //验证失败
-                        echo 44;
+                        echo 4;
                         $pdo -> rollBack();
                 }
             }else{
@@ -87,17 +76,17 @@ if($method == "POST"  && (!empty($ticket_id)) && (!empty($manager_id))){
                 $stmt = $pdo -> prepare($sql);
                 $bool=$stmt ->execute();
                 if(!$bool){
-                    echo 444;
+                    echo 4;
                     $pdo -> rollBack();
                 }
             }
         }
 
     }catch (PDOException $e){
-        echo $e;
+        echo 4;
         $pdo -> rollBack();
     }
 
 }else{
-    echo 44444;
+    echo 4;
 }
