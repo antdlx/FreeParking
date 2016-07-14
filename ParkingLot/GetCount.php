@@ -11,13 +11,12 @@
 require_once "Count.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
-$manager_id=$_POST['manager_id'];
 
 if($method == "POST"){
 
     $pdo = connectDb();
     $func = new Count();
-    $num = $func ->GetCount($pdo,$manager_id);
+    $num = $func ->GetCount($pdo);
     $list = array("car_count" => $num);
     echo json1($list);
 

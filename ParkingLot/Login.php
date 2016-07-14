@@ -27,7 +27,7 @@ if($method=='POST' && (!empty($manager_id)) && (!empty($manager_pwd))){
         echo 1;
     }else{
         $func = new Count();
-        $count = $func -> GetCount($pdo,$manager_id);
+        $count = $func -> GetCount($pdo);
         $list = array("car_count" => $count);
         echo json1($list);
     }
