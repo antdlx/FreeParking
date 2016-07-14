@@ -17,8 +17,9 @@ $manager_id = $_POST['manager_id'];
 $manager_img = $_POST['manager_img'];
 $manager_name = $_POST['manager_name'];
 $manager_password = $_POST['manager_password'];
+$parklot_id= $_POST['parklot_id'];
 
-if($method=='POST' && (!empty($manager_id)) && (!empty($manager_img)) && (!empty($manager_name)) && (!empty($manager_password))){
+if($method=='POST' && (!empty($parklot_id)) && (!empty($manager_id)) && (!empty($manager_img)) && (!empty($manager_name)) && (!empty($manager_password))){
 
     try{
 
@@ -31,12 +32,13 @@ if($method=='POST' && (!empty($manager_id)) && (!empty($manager_img)) && (!empty
 
             $pdo -> beginTransaction();
 
-            $sql = "INSERT INTO manager VALUES (?,?,?,?)";
+            $sql = "INSERT INTO manager VALUES (?,?,?,?,?)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(1,$manager_id);
             $stmt -> bindValue(2,$manager_img);
             $stmt -> bindValue(3,$manager_name);
             $stmt -> bindValue(4,$manager_password);
+            $stmt -> bindValue(5,$parklot_id);
             $stmt ->execute();
 
             $num = $stmt->rowCount();
@@ -55,7 +57,7 @@ if($method=='POST' && (!empty($manager_id)) && (!empty($manager_img)) && (!empty
         }
 
     }catch (PDOException $e){
-        echo 2;
+        echo 3;
     }
 
 }else{
