@@ -25,7 +25,7 @@ $location_w = test_input($_POST['location_w']);
 $RADIUS = 8;//单位km 显示的商家距离范围
 
 $sql = "select seller_id,seller_name,seller_address,seller_contact,seller_img,SQRT(POW((location_j - $location_j) * 111,2) + POW((location_w - $location_w) * 111,2)) as distance
-from seller where seller_name like '%$search_word%' order by distance limit $number_limit,10";
+from seller where seller_name like '%$search_word%' order by distance ASC limit $number_limit,10";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
@@ -52,7 +52,10 @@ if($count > 0 ){
     echo urldecode(json_encode($as));
 }
 else{
-    echo 0;//没有数据
+    $tmp = array(
+      "state" => 0
+    );
+    echo json_encode($tmp);//没有数据
 }
 
 ?>
