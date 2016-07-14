@@ -35,6 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $obj["seller_img"] = $row["seller_img"];
         $obj["seller_contact"] = $row["seller_contact"];
         $obj["seller_address"] = $row["seller_address"];
+        $obj["seller_location_j"] = $row["seller_location_j"];
+        $obj["seller_location_w"] = $row["seller_location_w"];
     } else {
         //密码错误
         $obj['state'] = 1;
