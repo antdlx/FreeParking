@@ -14,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $seller_address = test_input($_POST["seller_address"]);
     $seller_contact = test_input($_POST["seller_contact"]);
     $seller_img = test_input($_POST["seller_img"]);
+    $seller_location_j = test_input($_POST["seller_location_j"]);
+    $seller_location_w = test_input($_POST["seller_location_w"]);
 
     $pdo = connectDB();
     $stmt = $pdo->prepare("select * from seller where seller_id=?");
@@ -31,13 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $obj['state'] = 0;
 
         $stmt->closeCursor();
-        $stmt = $pdo->prepare("insert into seller VALUES(?,?,?,?,?,?)");
+        $stmt = $pdo->prepare("insert into seller VALUES(?,?,?,?,?,?,?,?)");
         $stmt->bindParam(1, $seller_id);
         $stmt->bindParam(2, $seller_password);
         $stmt->bindParam(3, $seller_name);
         $stmt->bindParam(4, $seller_address);
         $stmt->bindParam(5, $seller_contact);
         $stmt->bindParam(6, $seller_img);
+        $stmt->bindParam(7, $seller_location_j);
+        $stmt->bindParam(8, $seller_location_w);
         $stmt->execute();
     }
     echo json_encode($obj);
