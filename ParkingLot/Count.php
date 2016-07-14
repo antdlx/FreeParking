@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
+ * Created by PhpStorm
  * 获取今天停车的数量的类
  * 需要传入一个pdo对象
  * return -> 停车的数量
