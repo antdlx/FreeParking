@@ -14,6 +14,8 @@ $method  =  $_SERVER['REQUEST_METHOD'];
 $manager_id = $_POST['manager_id'];
 $pdo = connectDb();
 
+$pdo->query('set names utf8');
+
 if(($method=='POST') && (!empty($manager_id))){
 
     $sql = "SELECT manager_name,manager_img FROM manager WHERE manager_id = '$manager_id'";

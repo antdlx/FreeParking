@@ -11,6 +11,7 @@
 require_once "Functions.php";
 
 $pdo = connectDb();
+$pdo->query('set names utf8');
 $method = $_SERVER['REQUEST_METHOD'];
 
 $manager_id = $_POST['manager_id'];

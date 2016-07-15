@@ -16,6 +16,7 @@ $manager_id=$_POST['manager_id'];
 if($method == "POST"){
 
     $pdo = connectDb();
+    $pdo->query('set names utf8');
     $func = new Count();
     $num = $func ->GetCount($pdo,$manager_id);
     $list = array("car_count" => $num);

@@ -16,6 +16,7 @@ class Count{
     function GetCount($_pdo,$_manager_id){
 
         $pdo =$_pdo;
+        $pdo->query('set names utf8');
         $manager_id= $_manager_id;
 
         date_default_timezone_set('Asia/Shanghai');
