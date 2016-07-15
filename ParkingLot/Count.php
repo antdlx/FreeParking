@@ -23,7 +23,8 @@ class Count{
 
         $current_date = date('Y-m-d',time());
 
-        $sql = "SELECT count(ticket_id) FROM ticket NATURAL JOIN activity NATURAL JOIN seller_parklot WHERE parklot_id =(SELECT parklot_id FROM manager WHERE manager_id = '$manager_id')AND ticket_state=4 AND day(ticket_usetime) = day('$current_date')";
+//        $sql = "SELECT count(ticket_id) FROM ticket NATURAL JOIN activity NATURAL JOIN seller_parklot WHERE parklot_id =(SELECT parklot_id FROM manager WHERE manager_id = '$manager_id')AND ticket_state=4 AND day(ticket_usetime) = day('$current_date')";
+        $sql = "SELECT count(ticket_id) FROM ticket NATURAL JOIN activity NATURAL JOIN seller_parklot WHERE parklot_id =(SELECT parklot_id FROM manager WHERE manager_id = '$manager_id')AND ticket_state=4";
         $stmt = $pdo->prepare($sql);
         $stmt ->execute();
         $list = $stmt ->fetchAll(PDO::FETCH_ASSOC);
