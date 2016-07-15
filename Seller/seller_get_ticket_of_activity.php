@@ -22,7 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $obj['state'] = 0;
 
-        $stmt = $pdo->prepare("select * from ticket as a LEFT OUTER JOIN `user` as b On a.user_id=b.user_id where activity_id=? LIMIT $num,10");
+        $time = date('Y-m-d H:i:s',time());
+        $stmt = $pdo->prepare("select * from ticket as a LEFT OUTER JOIN `user` as b On a.user_id=b.user_id where activity_id=? and not(state=1 and a.ticket_deadline<$time) LIMIT $num,10");
         $stmt->bindParam(1, $activity_id);
         $stmt->execute();
         $rowCount = $stmt->rowCount();
